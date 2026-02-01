@@ -1,0 +1,28 @@
+{
+    "name": "blearnd/laravel-notification-suite",
+    "description": "A complete Laravel email & notification system with reusable Blade templates, Notification classes, and admin alerts for SaaS, fintech, and business apps.",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "autoload": {
+        "psr-4": {
+            "Blearnd\\LaravelNotificationSuite\\": "src/"
+        }
+    },
+    "extra": {
+      "laravel": {
+          "providers": [
+              "Blearnd\\LaravelNotificationSuite\\LaravelNotificationSuiteServiceProvider"
+          ]
+      }
+    },
+    "authors": [
+        {
+            "name": "bamilawal",
+            "email": "delasoftng@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^10.9"
+    }
+}
