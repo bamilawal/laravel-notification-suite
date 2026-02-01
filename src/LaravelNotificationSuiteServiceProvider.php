@@ -1,6 +1,6 @@
 <?php
 
-namespace Blearnd\LaravelNotificationSuite;
+namespace Bamilawal\LaravelNotificationSuite;
 
 use Illuminate\Support\ServiceProvider;
 
