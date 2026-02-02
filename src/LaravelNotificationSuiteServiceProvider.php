@@ -3,36 +3,44 @@
 namespace Bamilawal\LaravelNotificationSuite;
 
 use Illuminate\Support\ServiceProvider;
+use Bamilawal\LaravelNotificationSuite\Console\ActivateCommand;
 
-class BlogPackageServiceProvider extends ServiceProvider
+class LaravelNotificationSuiteServiceProvider extends ServiceProvider
 {
-  public function register()
-  {
-      $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravelnotificationsuite');
-
-  }
-
-  public function boot()
-  {
-    if ($this->app->runningInConsole()) {
-
-        $this->publishes([
-        __DIR__.'/../config/config.php' => config_path('laravel-notification-suite.php'),
-        ], 'config');
-
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-notification-suite'),
-        ], 'views');
-
-        // Publish view components
-        $this->publishes([
-            __DIR__.'/../src/View/Components/' => app_path('View/Components'),
-            __DIR__.'/../resources/views/components/' => resource_path('views/components'),
-        ], 'view-components');
-
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/laravel-notification-suite.php',
+            'laravel-notification-suite'
+        );
     }
 
-    $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravelnotificationsuite');
+    public function boot(): void
+    {
+        // Load views for emails & notifications
+        $this->loadViewsFrom(
+            __DIR__ . '/../resources/views',
+            'laravel-notification-suite'
+        );
 
-  }
+        if ($this->app->runningInConsole()) {
+
+            // Publish config
+            $this->publishes([
+                __DIR__ . '/../config/laravel-notification-suite.php' =>
+                    config_path('laravel-notification-suite.php'),
+            ], 'laravel-notification-suite-config');
+
+            // Publish views (optional override)
+            $this->publishes([
+                __DIR__ . '/../resources/views' =>
+                    resource_path('views/vendor/laravel-notification-suite'),
+            ], 'laravel-notification-suite-views');
+
+            // Register artisan commands
+            $this->commands([
+                ActivateCommand::class,
+            ]);
+        }
+    }
 }

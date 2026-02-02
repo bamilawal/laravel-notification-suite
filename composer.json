@@ -3,13 +3,13 @@
     "description": "A complete Laravel email & notification system with reusable Blade templates, Notification classes, and admin alerts for SaaS, fintech, and business apps.",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.0",
     "keywords": ["notifications", "laravel-mail", "laravel-mail", "email-templates"],
     "autoload": {
         "psr-4": {
             "Bamilawal\\LaravelNotificationSuite\\": "src/"
         }
     },
+
     "extra": {
       "laravel": {
           "providers": [
@@ -17,13 +17,24 @@
           ]
       }
     },
+
     "authors": [
         {
             "name": "bamilawal",
             "email": "delasoftng@gmail.com"
         }
     ],
+
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^9.0|^10.0|^11.0|^12.0"
+    },
+    
     "require-dev": {
         "orchestra/testbench": "^10.9"
-    }
+    },
+
+    "minimum-stability": "stable",
+    "prefer-stable": true
+    
 }
